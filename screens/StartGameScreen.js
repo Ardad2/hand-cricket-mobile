@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, TextInput, Button} from 'react-native';
+import { View, Text, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import Card from '../components/Card';
-import Input from '../components/input';
+import Input from '../components/Input';
 import Colors from '../constants/colors';
 
 const StartGameScreen = props => {
@@ -12,7 +12,15 @@ const StartGameScreen = props => {
         setEnteredValue(inputText.replace(/[^0-6]/g, ''));
     };
 
+    const resetInputHandler = () => {
+        setEnteredValue('');
+    }
+
     return (
+        <TouchableWithoutFeedback
+        onPress={() => {
+            Keyboard.dismiss();
+        }}>
         <View style={styles.screen}>
             <Text style={styles.title}>Start !</Text>
          <Card style={styles.inputContainer}>
@@ -26,13 +34,14 @@ const StartGameScreen = props => {
              onChangeText={numberInputHandler}
              value={enteredValue}/>
              <View style={styles.buttonContainer}>
-                 <Button title = "Reset" onPress={() => {}} color={Colors.accent}/>
+                 <Button title = "Reset" onPress={resetInputHandler} color={Colors.accent}/>
                  <Button title = "Confirm" onPress={() => {}} color={Colors.primary}/>
 
          </View>
          </Card>
 
         </View>
+        </TouchableWithoutFeedback>
     );
 };
 
