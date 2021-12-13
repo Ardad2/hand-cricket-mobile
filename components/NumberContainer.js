@@ -1,8 +1,6 @@
 import React from 'react';
-import { ViewBase, Text } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import colors from '../constants/colors';
-
+import { ViewBase, Text, StyleSheet } from 'react-native';
+import { Colors } from '../constants/colors';
 const NumberContainer = props => {
     return (
         <View style={styles.container}>
