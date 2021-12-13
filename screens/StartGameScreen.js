@@ -68,14 +68,13 @@ const StartGameScreen = props => {
              <Input style={styles.input} 
              blurOnSubmit 
              autoCaptalize='none' 
-             autoCorrect='false' 
              keyboardType="number-pad" 
              maxLength={1}
              onChangeText={numberInputHandler}
              value={enteredValue}/>
              <View style={styles.buttonContainer}>
                  <Button title = "Reset" onPress={resetInputHandler} color={Colors.accent}/>
-                 <Button title = "Confirm" onPress={(confirmInputHandler) => {}} color={Colors.primary}/>
+                 <Button title = "Confirm" onPress={confirmInputHandler} color={Colors.primary}/>
 
          </View>
          </Card>
