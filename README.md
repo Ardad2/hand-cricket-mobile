@@ -18,9 +18,7 @@ In this app, you have assumed the role of batting and have to score as many runs
 the opponent pick a number and if the number is the same then you lose a wicket otherwise the number you picked is added to your score. You have 10 wickets in hand
 and can pick from 0 to 6.
 
-![Alt text](https://i.imgur.com/wDFnifM.jpg "Toss Screen"){:class="img-responsive"}
-![Alt text](https://i.imgur.com/wDFnifM.jpg "Toss Screen"){:height="50%" width="50%"}
-![Alt text](https://i.imgur.com/v4QrqdV.jpg "Batting Screen"){:class="img-responsive"}
-![Alt text](https://i.imgur.com/v4QrqdV.jpg "Batting Screen"){:height="50%" width="50%"}
-![Alt text](https://i.imgur.com/JrjfxK6.jpg "Game Over Screen"){:class="img-responsive"}
-![Alt text](https://i.imgur.com/JrjfxK6.jpg "Game Over Screen"){:height="50%" width="50%"}
+<img src="https://i.imgur.com/wDFnifM.jpg" width=50% height=50%>
+<img src="https://i.imgur.com/v4QrqdV.jpg" width=50% height=50%>
+<img src="https://i.imgur.com/JrjfxK6.jpg" width=50% height=50%>
+
