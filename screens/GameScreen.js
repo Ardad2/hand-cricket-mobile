@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text,  StyleSheet, Button, Alert} from 'react-native';
 
 import NumberContainer from '../components/NumberContainer';
