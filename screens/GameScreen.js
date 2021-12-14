@@ -1,8 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text,  StyleSheet, Button, Alert} from 'react-native';
+import { View, Text,  StyleSheet, Button, Alert, Keyboard} from 'react-native';
 
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
+import Input from '../components/Input';
+import Colors from '../constants/colors';
+
+
 
 const generateRandomBetween = (min, max, exclude) => {
     min = Math.ceil(min);
@@ -18,8 +22,37 @@ const generateRandomBetween = (min, max, exclude) => {
 };
 
 const GameScreen = props => {
-    const [currentGuess, setCurrentGuess ] = useState(generateRandomBetween(0, 6, props.userChoice));
 
+    const [enteredValue, setEnteredValue] = useState('');
+    const [confirmed, setConfirmed] = useState(false);
+
+    const numberInputHandler = inputText => {
+        setEnteredValue(inputText.replace(/[^0-6]/g, ''));
+    };
+
+    const resetInputHandler = () => {
+        setEnteredValue('');
+        setConfirmed(false);
+    }
+
+    const confirmInputHandler = () => {
+
+        const chosenNumber = parseInt(enteredValue);
+
+        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 6)
+        {
+            Alert.alert('Invalid Number!', 'Number has to be between 0 and 6 included', [{text: 'Okay', style: 'destructive', onPress: resetInputHandler}]);
+            return;
+        }
+
+        setConfirmed(true);
+        setSelectedNumber(parseInt(enteredValue));
+        setEnteredValue('');
+        Keyboard.dismiss();
+    };
+
+    const [currentGuess, setCurrentGuess ] = useState(generateRandomBetween(0, 7, 100));
+    const [selectedNumber, setSelectedNumber] = useState();
     const [rounds, setRounds] = useState(0);
     const currentLow = useRef(0);
     const currentHigh = useRef(6);
@@ -33,20 +66,20 @@ const GameScreen = props => {
         }
     }, [currentGuess,]);
 
-    const nextGuessHandler = direction => {
-        if (direction == 'lower' && currentGuess < props.userChoice || direction == 'greater' && currentGuess > props.userChoice)
+    const nextGuessHandler = () => {
+
+        const chosenNumber = parseInt(enteredValue);
+
+        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 6)
         {
-            Alert.alert('Wrong! You are lying', [{text: 'sorry', style: 'cancel'}]);
+            Alert.alert('Invalid Number!', 'Number has to be between 0 and 6 included', [{text: 'Okay', style: 'destructive', onPress: resetInputHandler}]);
             return;
         }
 
-        if (direction == 'lower')
-        {
-            currentHigh.current = currentGuess;
-        }
-        else{
-            currentLow.current = currentGuess;
-        }
+        setConfirmed(true);
+        setSelectedNumber(parseInt(enteredValue));
+        setEnteredValue('');
+        Keyboard.dismiss();
 
         const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
         setCurrentGuess(nextNumber);
@@ -57,9 +90,20 @@ return (
     <View style={styles.screen}>
         <Text>Opponent's Number: </Text>
         <NumberContainer>{currentGuess}</NumberContainer>
-        <Card style={styles.buttonContainer}>
-            <Button title="Lower" onPress={nextGuessHandler.bind(this, 'lower')} />
-            <Button title="Greater" onPress={nextGuessHandler.bind(this, 'greater')}/>
+        <Card style={styles.inputContainer}>
+        <Text>Select a Number!</Text>
+             <Input style={styles.input} 
+             blurOnSubmit 
+             autoCaptalize='none' 
+             keyboardType="number-pad" 
+             maxLength={1}
+             onChangeText={numberInputHandler}
+             value={enteredValue}/>
+             <View style={styles.buttonContainer}>
+                 <Button title = "Reset" onPress={resetInputHandler} color={Colors.accent}/>
+                 <Button title = "Confirm" onPress={nextGuessHandler} color={Colors.primary}/>
+
+         </View>
         </Card>
 
     </View>
@@ -67,6 +111,15 @@ return (
 };
 
 const styles = StyleSheet.create({
+    inputContainer: {
+        width: 300,
+        maxWidth: '80%',
+        alignItems: 'center',
+    },
+    input: {
+        width: 50,
+        textAlign: "center"
+    },
     screen: {
         flex: 1,
         padding: 10,
