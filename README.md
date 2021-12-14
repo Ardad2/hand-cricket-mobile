@@ -6,9 +6,11 @@ based on the bat and ball game of cricket. I used this to get familiarized with 
 # Objectives of Hand Cricket Game
 The objective of both the players is to score more runs (or points) then the other to win. The players take turn 
 for making the runs in each of two innings , the player who is scoring the runs is "Batting" during that innings and the other player stopping that player from 
-scoring runs is "Bowling". After the current batting player runs out of wickets (number of outs), then we move to next innings and the roles are flipped. The player
-in the second innings has to try to make more runs than the first player had made in the first innings batting while the player who had batted now assunmes the role
-of bowling.
+scoring runs is "Bowling". In each turn both players pick a number, if the numbers are the same then the batting team loses a wicket (gets an out), otherwise the 
+number is added as runs to their score.
+After the current batting player runs out of wickets (number of outs), then we move to next innings and the roles are flipped. The player
+in the second innings has to try to make more runs than the first player had made in the first innings batting while the player who had batted now assumes the role
+of bowling and tries to take all the wickets of the batter before they can reach the score.
 
 # What does this app simulate
 
