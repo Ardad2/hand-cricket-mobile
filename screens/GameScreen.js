@@ -37,8 +37,6 @@ const GameScreen = props => {
 
     const [currentGuess, setCurrentGuess ] = useState(null);
     const [selectedNumber, setSelectedNumber] = useState();
-    const currentLow = useRef(0);
-    const currentHigh = useRef(6);
     const [wickets, setWickets] = useState(0);
     const [runs, setRuns] = useState(0);
 
@@ -67,7 +65,7 @@ const GameScreen = props => {
 
             if (wickets == 1)
             {
-                onGameOver();
+                onGameOver(wickets);
             }
         }
         else

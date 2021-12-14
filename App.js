@@ -11,31 +11,31 @@ import GameOverScreen from './screens/GameOverScreen';
 export default function App() {
 
     const[userNumber, setUserNumber] = useState();
-    const [guessRounds, setGuessRounds] = useState(0);
+    const [wickets, setWickets] = useState(0);
 
     const configureNewGameHandler = () => {
-      setGuessRounds(0);
+      setWickets(0);
       setUserNumber(null);
     }
 
     const startGameHandler = (selectedNumber) => {
       setUserNumber(selectedNumber);
-      setGuessRounds(0);
+      setWickets(0);
     };
 
-    const gameOverHandler = (numOfRounds) => {
-      setGuessRounds(numOfRounds);
+    const gameOverHandler = (wickets) => {
+      setWickets(wickets);
     };
 
     let content = <StartGameScreen onStartGame={startGameHandler}/>;
 
-    if (userNumber && guessRounds <= 0)
+    if (userNumber && wickets < 1)
     {
       content = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler}/> 
     }
-    else if (guessRounds > 0)
+    else if (wickets >= 1)
     {
-      content = <GameOverScreen roundsNumber={guessRounds} userNumber={userNumber} onRestart={configureNewGameHandler}/>;
+      content = <GameOverScreen wickets={wickets} userNumber={userNumber} onRestart={configureNewGameHandler}/>;
     }
 
 
