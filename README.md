@@ -17,3 +17,7 @@ of bowling and tries to take all the wickets of the batter before they can reach
 In this app, you have assumed the role of batting and have to score as many runs as possible without losing all of your wickets. For each turn (delivery), you and
 the opponent pick a number and if the number is the same then you lose a wicket otherwise the number you picked is added to your score. You have 10 wickets in hand
 and can pick from 0 to 6.
+
+![Alt text](https://imgur.com/a/TjxPerx "Toss Screen")
+![Alt text](https://imgur.com/a/X5J8LvJ "Batting Screen")
+![Alt text](https://imgur.com/a/xho9zBx "Game Over Screen")
