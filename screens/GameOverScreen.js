@@ -4,8 +4,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 const GameOverScreen = props => {
     return <View style={styles.screen}>
         <Text>You've been bowled out!</Text>
-        <Text>You lost all of your {props.roundsNumber} wickets</Text>
-        <Text>Number was: {props.userNumber}</Text>
+        <Text>You lost all of your 10 wickets!</Text>
         <Button title="NEW GAME" onPress={props.onRestart}/>
     </View>
 };

@@ -35,42 +35,20 @@ const GameScreen = props => {
         setConfirmed(false);
     }
 
-    const confirmInputHandler = () => {
-
-        const chosenNumber = parseInt(enteredValue);
-
-        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 6)
-        {
-            Alert.alert('Invalid Number!', 'Number has to be between 0 and 6 included', [{text: 'Okay', style: 'destructive', onPress: resetInputHandler}]);
-            return;
-        }
-
-        setConfirmed(true);
-        setSelectedNumber(parseInt(enteredValue));
-        setEnteredValue('');
-        Keyboard.dismiss();
-    };
-
-    const [currentGuess, setCurrentGuess ] = useState(generateRandomBetween(0, 7, 100));
+    const [currentGuess, setCurrentGuess ] = useState(null);
     const [selectedNumber, setSelectedNumber] = useState();
-    const [rounds, setRounds] = useState(0);
     const currentLow = useRef(0);
     const currentHigh = useRef(6);
+    const [wickets, setWickets] = useState(0);
+    const [runs, setRuns] = useState(0);
 
     const { userChoice, onGameOver } = props;
-
-    useEffect(() => {
-        if (currentGuess === userChoice)
-        {
-            onGameOver(rounds);
-        }
-    }, [currentGuess,]);
 
     const nextGuessHandler = () => {
 
         const chosenNumber = parseInt(enteredValue);
 
-        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 6)
+        if (isNaN(chosenNumber) || chosenNumber < 0 || chosenNumber > 6)
         {
             Alert.alert('Invalid Number!', 'Number has to be between 0 and 6 included', [{text: 'Okay', style: 'destructive', onPress: resetInputHandler}]);
             return;
@@ -81,13 +59,28 @@ const GameScreen = props => {
         setEnteredValue('');
         Keyboard.dismiss();
 
-        const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
+        const nextNumber = generateRandomBetween(0,6,null);
+
+        if (currentGuess === nextNumber)
+        {
+            setWickets(wickets + 1);
+
+            if (wickets == 1)
+            {
+                onGameOver();
+            }
+        }
+        else
+        {setRuns(runs+chosenNumber);}
+
+        
         setCurrentGuess(nextNumber);
-        setRounds(currRounds => currRounds + 1);
+
     };
 
 return (
     <View style={styles.screen}>
+        <Text>Your score is {runs} - {wickets}</Text>
         <Text>Opponent's Number: </Text>
         <NumberContainer>{currentGuess}</NumberContainer>
         <Card style={styles.inputContainer}>
