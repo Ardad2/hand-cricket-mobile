@@ -12,19 +12,23 @@ export default function App() {
 
     const[userNumber, setUserNumber] = useState();
     const [wickets, setWickets] = useState(0);
+    const [runs, setRuns] = useState(0);
 
     const configureNewGameHandler = () => {
       setWickets(0);
+      setRuns(0);
       setUserNumber(null);
     }
 
     const startGameHandler = (selectedNumber) => {
       setUserNumber(selectedNumber);
       setWickets(0);
+      setRuns(0);
     };
 
-    const gameOverHandler = (wickets) => {
+    const gameOverHandler = (runs, wickets) => {
       setWickets(wickets);
+      setRuns(runs);
     };
 
     let content = <StartGameScreen onStartGame={startGameHandler}/>;
@@ -35,7 +39,7 @@ export default function App() {
     }
     else if (wickets >= 1)
     {
-      content = <GameOverScreen wickets={wickets} userNumber={userNumber} onRestart={configureNewGameHandler}/>;
+      content = <GameOverScreen runs={runs} wickets={wickets} userNumber={userNumber} onRestart={configureNewGameHandler}/>;
     }
 
 

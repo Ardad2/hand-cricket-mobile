@@ -65,7 +65,7 @@ const GameScreen = props => {
 
             if (wickets == 1)
             {
-                onGameOver(wickets);
+                onGameOver(runs, wickets);
             }
         }
         else
