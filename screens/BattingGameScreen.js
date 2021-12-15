@@ -21,7 +21,7 @@ const generateRandomBetween = (min, max, exclude) => {
     }
 };
 
-const GameScreen = props => {
+const BattingGameScreen = props => {
 
     const [enteredValue, setEnteredValue] = useState('');
     const [confirmed, setConfirmed] = useState(false);
@@ -43,7 +43,6 @@ const GameScreen = props => {
     const { userChoice, onGameOver } = props;
 
     const nextGuessHandler = () => {
-
         const chosenNumber = parseInt(enteredValue);
 
         if (isNaN(chosenNumber) || chosenNumber < 0 || chosenNumber > 6)
@@ -78,6 +77,7 @@ const GameScreen = props => {
 
 return (
     <View style={styles.screen}>
+        <Text style={styles.header}> Player Batting</Text>
         <Text>Your score is {runs} - {wickets}</Text>
         <Text>Opponent's Number: </Text>
         <NumberContainer>{currentGuess}</NumberContainer>
@@ -107,6 +107,9 @@ const styles = StyleSheet.create({
         maxWidth: '80%',
         alignItems: 'center',
     },
+    header: {
+        fontSize: 22
+    },
     input: {
         width: 50,
         textAlign: "center"
@@ -125,4 +128,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default GameScreen;
+export default BattingGameScreen;

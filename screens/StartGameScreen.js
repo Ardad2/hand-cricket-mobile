@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
+import { View, ImageBackground, Text, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
 import Card from '../components/Card';
 import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
@@ -57,14 +57,14 @@ const StartGameScreen = props => {
 
 
     return (
+        <ImageBackground source={require("../assets/6402575.jpeg")} style={{width: '100%', height: '100%'}}>
         <TouchableWithoutFeedback
         onPress={() => {
             Keyboard.dismiss();
         }}>
         <View style={styles.screen}>
-            <Text style={styles.title}>Start !</Text>
+            <Text style={styles.title}>Toss: Select a Number!</Text>
          <Card style={styles.inputContainer}>
-             <Text>Toss: Select a Number!</Text>
              <Input style={styles.input} 
              blurOnSubmit 
              autoCaptalize='none' 
@@ -80,6 +80,7 @@ const StartGameScreen = props => {
 
         </View>
         </TouchableWithoutFeedback>
+        </ImageBackground>
     );
 };
 
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
+        color: 'white',
         fontSize: 20,
         marginVertical: 10
     },

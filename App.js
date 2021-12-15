@@ -5,7 +5,7 @@ import * as Font from 'expo-font';
 
 import Header from './components/Header';
 import StartGameScreen from './screens/StartGameScreen';
-import GameScreen from './screens/GameScreen';
+import BattingGameScreen from './screens/BattingGameScreen';
 import GameOverScreen from './screens/GameOverScreen';
 
 export default function App() {
@@ -13,20 +13,26 @@ export default function App() {
     const[userNumber, setUserNumber] = useState();
     const [wickets, setWickets] = useState(0);
     const [runs, setRuns] = useState(0);
+    const [oppWickets, setOppWickets] = useState(0);
+    const [oppRuns, setOppRuns] = useState(0);
 
     const configureNewGameHandler = () => {
       setWickets(0);
       setRuns(0);
+      setOppRuns(0);
+      setOppWickets(0);
       setUserNumber(null);
     }
 
     const startGameHandler = (selectedNumber) => {
       setUserNumber(selectedNumber);
       setWickets(0);
+      setOppWickets(0);
+      setOppRuns(0);
       setRuns(0);
     };
 
-    const gameOverHandler = (runs, wickets) => {
+    const gameOverHandler = (runs, oppRuns, oppWickets) => {
       setWickets(wickets);
       setRuns(runs);
     };
@@ -35,7 +41,7 @@ export default function App() {
 
     if (userNumber && wickets < 1)
     {
-      content = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler}/> 
+      content = <BattingGameScreen userChoice={userNumber} onGameOver={gameOverHandler}/> 
     }
     else if (wickets >= 1)
     {
