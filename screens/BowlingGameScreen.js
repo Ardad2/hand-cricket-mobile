@@ -21,7 +21,7 @@ const generateRandomBetween = (min, max, exclude) => {
     }
 };
 
-const Bowling = props => {
+const BowlingGameScreen = props => {
 
     const [enteredValue, setEnteredValue] = useState('');
     const [confirmed, setConfirmed] = useState(false);
@@ -40,7 +40,7 @@ const Bowling = props => {
     const [oppWickets, setOppWickets] = useState(0);
     const [oppRuns, setOppRuns] = useState(0);
 
-    const { userChoice, onGameOver } = props;
+    const { userChoice, onGameOver, runs } = props;
 
     const nextGuessHandler = () => {
 
@@ -61,15 +61,20 @@ const Bowling = props => {
 
         if (currentGuess === nextNumber)
         {
-            setWickets(wickets + 1);
+            oppWickets++;
 
-            if (wickets == 1)
+            if (oppWickets == 2)
             {
-                onGameOver(runs, wickets);
+                onGameOver(oppRuns, oppWickets);
             }
         }
         else
-        {setRuns(runs+chosenNumber);}
+        {setOppRuns(oppRuns+currentGuess);
+            if (oppRuns > runs)
+            {
+                onGameOver(oppRuns, oppWickets);
+            }
+        }
 
         
         setCurrentGuess(nextNumber);
@@ -78,7 +83,7 @@ const Bowling = props => {
 
 return (
     <View style={styles.screen}>
-        <Text>Opponent's score is {runs} - {wickets}</Text>
+        <Text>Opponent's score is {oppRuns} - {oppWickets}</Text>
         <Text>Opponent's Number: </Text>
         <NumberContainer>{currentGuess}</NumberContainer>
         <Card style={styles.inputContainer}>

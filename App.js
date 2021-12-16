@@ -7,56 +7,59 @@ import Header from './components/Header';
 import StartGameScreen from './screens/StartGameScreen';
 import BattingGameScreen from './screens/BattingGameScreen';
 import GameOverScreen from './screens/GameOverScreen';
+import BowlingGameScreen from './screens/BowlingGameScreen';
 
 export default function App() {
 
     const[userNumber, setUserNumber] = useState();
-    const [wickets, setWickets] = useState(0);
-<<<<<<< HEAD
     const [runs, setRuns] = useState(0);
-    const [oppWickets, setOppWickets] = useState(0);
     const [oppRuns, setOppRuns] = useState(0);
+    const [oppWickets, setOppWickets] = useState(0);
+    const [wickets, setWickets] = useState(0);
+    const [inningsNo, setInningsNo] = useState(0);
 
     const configureNewGameHandler = () => {
       setWickets(0);
-      setRuns(0);
-      setOppRuns(0);
-      setOppWickets(0);
-=======
-
-    const configureNewGameHandler = () => {
-      setWickets(0);
->>>>>>> parent of d877713 (fixed bugs with the score)
       setUserNumber(null);
     }
 
     const startGameHandler = (selectedNumber) => {
       setUserNumber(selectedNumber);
+      setInningsNo(1);
       setWickets(0);
-<<<<<<< HEAD
-      setOppWickets(0);
-      setOppRuns(0);
-      setRuns(0);
     };
 
-    const gameOverHandler = (runs, oppRuns, oppWickets) => {
-=======
-    };
-
-    const gameOverHandler = (wickets) => {
->>>>>>> parent of d877713 (fixed bugs with the score)
-      setWickets(wickets);
-    };
-
-    let content = <StartGameScreen onStartGame={startGameHandler}/>;
-
-    if (userNumber && wickets < 1)
-    {
-      content = <BattingGameScreen userChoice={userNumber} onGameOver={gameOverHandler}/> 
+    const inningsChangeHandler = (inningsNo, playerRuns) => {
+      setRuns(playerRuns);
+      setInningsNo(inningsNo);
     }
-    else if (wickets >= 1)
+
+    const gameOverHandler = (wickets, oppRuns) => {
+      setOppRuns(oppRuns);
+      setOppWickets(oppWickets);
+      setOppWickets(wickets);
+    };
+
+    content = <StartGameScreen onStartGame={startGameHandler} />;
+
+    if (inningsNo === 1)
     {
-      content = <GameOverScreen wickets={wickets} userNumber={userNumber} onRestart={configureNewGameHandler}/>;
+      content = <BattingGameScreen userChoice={userNumber} onGameOver={inningsChangeHandler}/>;
+    }
+
+    else if (inningsNo === 2)
+    {
+      content = <BowlingGameScreen userChoice={userNumber} onGameOver={gameOverHandler} runs={runs}/>;
+    }
+
+    else if (inningsNo === 2 && (oppRuns > runs))
+    {
+      content = <GameOverScreen winner = {"You Lost"} wickets={wickets} userNumber={userNumber} onRestart={configureNewGameHandler}/>;
+    }
+
+    else if (inningsNo === 2 && (runs > oppRuns))
+    {
+      content = <GameOverScreen winner = {"You Won"} wickets={wickets} userNumber={userNumber} onRestart={configureNewGameHandler}/>;
     }
 
 
