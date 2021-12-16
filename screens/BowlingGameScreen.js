@@ -61,16 +61,17 @@ const BowlingGameScreen = props => {
 
         if (currentGuess === nextNumber)
         {
-            oppWickets++;
+            setOppWickets(oppWickets + 1);
 
-            if (oppWickets == 2)
+            if (oppWickets == 1)
             {
                 onGameOver(oppRuns, oppWickets);
             }
         }
         else
-        {setOppRuns(oppRuns+currentGuess);
-            if (oppRuns > runs)
+        {setOppRuns(oppRuns+nextNumber);
+
+            if (oppRuns >= runs)
             {
                 onGameOver(oppRuns, oppWickets);
             }
@@ -83,6 +84,7 @@ const BowlingGameScreen = props => {
 
 return (
     <View style={styles.screen}>
+        <Text>Target: {props.runs} (Your score)</Text>
         <Text>Opponent's score is {oppRuns} - {oppWickets}</Text>
         <Text>Opponent's Number: </Text>
         <NumberContainer>{currentGuess}</NumberContainer>

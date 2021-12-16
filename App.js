@@ -21,6 +21,7 @@ export default function App() {
     const configureNewGameHandler = () => {
       setWickets(0);
       setUserNumber(null);
+      setInningsNo(0);
     }
 
     const startGameHandler = (selectedNumber) => {
@@ -38,6 +39,7 @@ export default function App() {
       setOppRuns(oppRuns);
       setOppWickets(oppWickets);
       setOppWickets(wickets);
+      setInningsNo(3);
     };
 
     content = <StartGameScreen onStartGame={startGameHandler} />;
@@ -52,12 +54,12 @@ export default function App() {
       content = <BowlingGameScreen userChoice={userNumber} onGameOver={gameOverHandler} runs={runs}/>;
     }
 
-    else if (inningsNo === 2 && (oppRuns > runs))
+    else if (inningsNo === 3 && (oppRuns > runs))
     {
       content = <GameOverScreen winner = {"You Lost"} wickets={wickets} userNumber={userNumber} onRestart={configureNewGameHandler}/>;
     }
 
-    else if (inningsNo === 2 && (runs > oppRuns))
+    else if (inningsNo === 3 && (runs > oppRuns))
     {
       content = <GameOverScreen winner = {"You Won"} wickets={wickets} userNumber={userNumber} onRestart={configureNewGameHandler}/>;
     }
