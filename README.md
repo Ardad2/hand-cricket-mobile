@@ -16,7 +16,9 @@ of bowling and tries to take all the wickets of the batter before they can reach
 
 In this app, you have assumed the role of batting and have to score as many runs as possible without losing all of your wickets. For each turn (delivery), you and
 the opponent pick a number and if the number is the same then you lose a wicket otherwise the number you picked is added to your score. You have 10 wickets in hand
-and can pick from 0 to 6.
+and can pick from 0 to 6. Once you've scored some runs, the opponents get the same amount of wickets and has to chase it down, you have to guess the same number as the opponent does to take a wicket or else the opponent scores the run, just like in the previous innings for you. If you get out all the wickets of the opponent before they score more runs than you had then you win.
+
+# Screenshots [Outdated]
 
 <img src="https://i.imgur.com/wDFnifM.jpg" width=50% height=50%>
 <img src="https://i.imgur.com/v4QrqdV.jpg" width=50% height=50%>
