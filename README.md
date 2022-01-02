@@ -1,7 +1,7 @@
 # Hand Cricket Game
 
 This is a React Native mobile application which is based on a popular game played by children in India using just their hands (just like paper and scissors) which is
-based on the bat and ball game of cricket. I used this to practice as well as get familiarized to programming in JavaScript for the React Native framework. The game is functional though the design is still rudimentary as this was just a practice.
+based on the bat and ball game of cricket. I used this to practice as well as get familiarized to programming in JavaScript for the React Native framework. The game is functional though the design is still rudimentary as this was just a practice. I'm currently working on adding an actual AI for the computer to pick numbers according to what the user picked rather than it just picking random numbers.
 
 # Objectives of Hand Cricket Game
 The objective for  both the players is to score more runs (or points) then the other to win. The players take turn 
